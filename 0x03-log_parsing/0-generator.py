@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 """Log parsing test."""
-
 import random
 import sys
 from time import sleep
 import datetime
-
 # generate 10_000 loops for the file
 for i in range(10000):
     sleep(random.random())
