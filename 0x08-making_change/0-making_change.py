@@ -1,18 +1,29 @@
 #!/usr/bin/python3
-"""
-Chamge comes from within
+"""0-making_change module
 """
 
 
 def makeChange(coins, total):
-    """
-    Given a pile of cons of different values,
-    determine the fewest number of cons needed to meet a given amount total.
+    """makeChange function that determines the fewest
+    number of coins needed to meet a given amount total.
+
+    Args:
+        coins (list): list of the values of the coins in your possession
+        total (number): total to reach with coins
+
+    Returns:
+        number: number of coins needed to meet total
     """
     if total <= 0:
         return 0
-    dp = [0] + [float("inf")] * (total)
+    coins.sort(reverse=True)
+    count = 0
     for coin in coins:
-        for i in range(coin, total + 1):
-            dp[i] = min(dp[i], dp[i - coin] + 1)
-    return dp[-1] if dp[-1] != float("inf") else -1
+        if total <= 0:
+            break
+        while total >= coin:
+            total -= coin
+            count += 1
+    if total != 0:
+        return -1
+    return count
